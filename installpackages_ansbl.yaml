@@ -1,16 +1,16 @@
 ---
-hosts: localhost
-becomes: yes
-tasks:
-  - description: install java 17
-    ansible.builtin.yum:
-      name: java-17-openjdk
-      state: present
-  - description: install maven3.9.10
-    ansible.builtin.yum:
-      name: maven-3.9.10
-      state: present
-  - description: install git
-    ansible.builtin.yum:
-      name: git-2.13.0
-      state: present
+- hosts: localhost
+  becomes: yes
+  tasks:
+    - description: install java 17
+      ansible.builtin.yum:
+        name: java-17-openjdk
+        state: present
+    - description: install maven3.9.10
+      ansible.builtin.yum:
+        name: maven-3.9.10
+        state: present
+    - description: install git
+      ansible.builtin.yum:
+        name: git-2.13.0
+        state: present
