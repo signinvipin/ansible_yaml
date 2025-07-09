@@ -6,7 +6,7 @@
   tasks:
     - name: make folder
         shell: mkdir testfolder
-        arg:
+        args:
           creates: testfolder
 
     - name: enter directory and create
