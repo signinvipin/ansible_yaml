@@ -6,8 +6,8 @@
   tasks:
     - name: make folder
       shell: mkdir testfolder
-        args:
-          creates: testfolder
+      args:
+        creates: testfolder
 
     - name: enter directory and create
       shell: touch newfile.txt
