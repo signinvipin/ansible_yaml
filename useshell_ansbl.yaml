@@ -6,8 +6,8 @@
   tasks:
     - name: make folder
       shell: mkdir testfolder
-      state: present
-    - name: enter directory
+          
+    - name: enter directory and create
       shell: cd testfolder && touch filename.txt
         
 
