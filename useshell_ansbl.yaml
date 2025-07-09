@@ -10,8 +10,8 @@
         creates: testfolder
 
     - name: enter directory and create
-      shell: 
-        chdir: testfolder
-        creates: newfile.txt
+      shell: touch newfile.txt
+      chdir: testfolder
+      creates: newfile.txt
         
 
