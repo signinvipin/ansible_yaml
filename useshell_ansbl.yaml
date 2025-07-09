@@ -7,11 +7,11 @@
     - name: make folder
       shell: mkdir testfolder
       arg:
-        creates: testfolder/
+        creates: testfolder
 
     - name: enter directory and create
       shell: 
-        chdir: testfolder/
+        chdir: testfolder
         creates: newfile.txt
         
 
