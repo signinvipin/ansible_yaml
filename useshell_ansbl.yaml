@@ -11,9 +11,9 @@
 
     - name: enter directory and create
       shell: touch newfile.txt
-        args:
-          chdir: testfolder
-          creates: newfile.txt
+      args:
+        chdir: testfolder
+        creates: newfile.txt
 
     - name: Ensures line exists in the file if not add it
       ansible.builtin.lineinfile:
