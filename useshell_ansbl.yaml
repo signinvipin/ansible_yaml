@@ -11,7 +11,7 @@
 
     - name: enter directory and create
       shell: touch newfile.txt
-        chdir: testfolder
-        creates: newfile.txt
+      chdir: testfolder
+      creates: newfile.txt
         
 
