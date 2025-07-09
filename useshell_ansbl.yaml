@@ -5,13 +5,13 @@
   become: true
   tasks:
     - name: make folder
-      shell: mkdir testfolder
-      arg:
-        creates: testfolder
+        shell: mkdir testfolder
+        arg:
+          creates: testfolder
 
     - name: enter directory and create
-      shell: touch newfile.txt
-      chdir: testfolder
-      creates: newfile.txt
+        shell: touch newfile.txt
+        chdir: testfolder
+        creates: newfile.txt
         
 
