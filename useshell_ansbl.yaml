@@ -6,8 +6,12 @@
   tasks:
     - name: make folder
       shell: mkdir testfolder
-          
+      arg:
+        creates: testfolder/
+
     - name: enter directory and create
-      shell: cd testfolder && touch filename.txt
+      shell: 
+        chdir: testfolder/
+        creates: newfile.txt
         
 
