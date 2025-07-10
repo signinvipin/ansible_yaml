@@ -28,8 +28,9 @@
         chdir: testfolder
         creates: oldfile.txt
 
-#     shell expects a single multi-line string 
-#     so '|' is used to run cmds in one go and can't put cmds as list with '-'
+#     shell expects a single multi-line string but we are providing multiple strings
+#     so '|' is used to run separate cmds in one go and can't put cmds as list with '-'
+#     so '>' is used to run/execute all multiple lines as one single line
     - name: Setup CentOS repository links
       shell: |
         sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
