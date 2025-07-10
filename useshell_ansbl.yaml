@@ -4,12 +4,12 @@
 - hosts: localhost
   become: true
   tasks:
-    - name: make folder
+    - name: Make folder
       shell: mkdir testfolder
       args:
         creates: testfolder
 
-    - name: enter directory and create
+    - name: Enter directory and create
       shell: touch newfile.txt
       args:
         chdir: testfolder
@@ -21,4 +21,8 @@
         line: "Hi I'm your friend"
         create: yes
         
+    - name: execute commands
+      shell: 
+        cmd: mv newfile.txt oldfile.txt
+        chdir: testfolder
 
