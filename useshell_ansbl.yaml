@@ -15,21 +15,24 @@
         chdir: testfolder
         creates: newfile.txt
 
-    - name: Ensures line exists in the file if not add it
+    - name: Ensures line exists in the file, if not adds it
       ansible.builtin.lineinfile:
         path: testfolder/newfile.txt
         line: "Hi I'm your friend"
         create: yes
-        
+
+#     shell executes rename file cmd after entering into folder   
     - name: execute commands
       shell: 
         cmd: mv newfile.txt oldfile.txt
         chdir: testfolder
         creates: oldfile.txt
 
+#     shell expects a single multi-line string 
+#     so '|' is used to run cmds in one go and can't put cmds as list with '-'
     - name: Setup CentOS repository links
-      shell:
-        - sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-        - sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
-        - yum install epel-release -y
+      shell: |
+        sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+        sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+        yum install epel-release -y
 
