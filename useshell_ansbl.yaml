@@ -25,6 +25,7 @@
       shell: 
         cmd: mv newfile.txt oldfile.txt
         chdir: testfolder
+        creates: oldfile.txt
 
     - name: Setup CentOS repository links
       shell:
