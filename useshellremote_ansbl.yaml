@@ -1,7 +1,8 @@
 # install/run commands from bash 
 
 ---
-- hosts: localhost
+#- hosts: localhost
+- hosts: 18.218.140.76
   become: true
   tasks:
     - name: Make folder
