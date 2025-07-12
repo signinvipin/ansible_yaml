@@ -1,5 +1,5 @@
-hosts:
-  test:
+test:
+  hosts:
     remote-host-01:
       18.218.140.76: 
         ansible_ssh_user: cloud-user 
