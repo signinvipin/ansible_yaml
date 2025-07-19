@@ -1,5 +1,5 @@
 ---
-hosts: 
+hosts: localhost
   become: true
   tasks:
     - name: Install java-11-openjdk
