@@ -1,0 +1,41 @@
+---
+- hosts: localhost
+  become: true
+  tasks: 
+    - name: Add kibana repository to OS
+      yum_repository:
+        name: kibana-7.x
+        description: Kibana repository for 7.x packages
+        baseurl: https://artifacts.elastic.co/packages/7.x/yum
+        gpgcheck: true
+        gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+        enabled: true
+        autorefresh: true
+        type: rpm-md
+
+    - name: Install kibana
+      yum:
+        name: kibana-7.x
+        state: present
+
+    - name: Edit the configuration to access from anywhere
+      lineinfile:
+        path: /etc/kibana/kibana.yml
+        regex: '^server.host:'
+        #included ^ to match only lines that start with 'server.host:'
+        line: 'server.host: 0.0.0.0'
+
+    - name: Reload systemd for kibana
+      command: systemctl daemon-reload
+
+    - name: Enable kibana
+      systemd:
+        name: kibana
+        enabled: true
+
+    - name: Start kibana
+      systemd:
+        name: kibana
+        state: started
+        
+...    

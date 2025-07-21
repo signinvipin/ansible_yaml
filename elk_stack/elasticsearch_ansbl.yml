@@ -13,14 +13,18 @@
         autorefresh: true
         type: rpm-md
         state: present
+    
     - name: Enable repository and install elasticsearch
       command: yum install --enablerepo=elasticsearch -y elasticsearch
+    
     - name: Reload systemd for elasticsearch.service
       command: systemctl daemon-reload
+    
     - name: Enable elasticsearch.service
       systemd:
         name: elasticsearch
         enabled: true
+    
     - name: Start elasticsearch
       systemd:
         name: elasticsearch
