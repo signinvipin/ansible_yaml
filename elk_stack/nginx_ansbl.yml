@@ -1,0 +1,77 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Install prerequisites
+      yum: 
+        name: yum-utils
+        state: present
+
+    - name: Setup stable repository for nginx
+      yum_repository:
+        name: nginx-stable
+        description: nginx stable repo
+        baseurl: http://nginx.org/packages/centos/$releasever/$basearch/
+        gpgcheck: true
+        enabled: true
+        gpgkey: https://nginx.org/keys/nginx_signing.key
+        module_hotfixes: true
+
+# Most of the time stable repository will be used
+#    - name: Setup mainline repository for nginx
+#      yum_repository: 
+#        name: nginx-mainline
+#        description: nginx mainline repo
+#        baseurl: http://nginx.org/packages/mainline/centos/$releasever/$basearch/
+#        gpgcheck: 1
+#        enabled: 0
+#        gpgkey: https://nginx.org/keys/nginx_signing.key
+#        module_hotfixes: true
+
+#    - name: Install packages from nginx-mainline
+#      shell: 
+#        sudo yum-config-manager --enable nginx-mainline
+
+    - name: Install nginx-stable
+      yum:
+        name: nginx
+        state: present
+
+# why below using templates?
+# kibana.conf.j2
+#server {
+#   listen {{nginx_kibana_port}};
+#   server_name {{server_name}};
+#   auth_basic "Restricted Access";
+#   auth_basic_user_file /etc/nginx/htpasswd.users;
+#   location / {
+#       proxy_pass http://localhost:5601;
+#       proxy_http_version 1.1;
+#       proxy_set_header Upgrade $http_upgrade;
+#       proxy_set_header Connection 'upgrade';
+#       proxy_set_header Host $host;
+#       proxy_cache_bypass $http_upgrade;
+#   }
+#}
+
+# kibanaAdmin.j2
+# echo "{{kibana_user}}:`openssl passwd -apr1`" | sudo tee -a /etc/nginx/htpasswd.users
+
+# syslog-filter.conf.j2
+#filter {
+# if [type] == "syslog" {
+#   grok {
+#     match => { "message" => "%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{DATA:syslog_program}(?:\[%{POSINT:syslog_pid}\])?: %{GREEDYDATA:syslog_message}" }
+#     add_field => [ "received_at", "%{@timestamp}" ]
+#     add_field => [ "received_from", "%{host}" ]
+#   }
+#   syslog_pri { }
+#   date {
+#     match => [ "syslog_timestamp", "MMM  d HH:mm:ss", "MMM dd HH:mm:ss" ]
+#   }
+# }
+#}
+
+
+
+...
