@@ -1,0 +1,44 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Import Key 
+      rpm_key:
+        key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+        state: present
+    
+    # Change version 7.x to 8.x or 9.x if required
+    - name: Setup logstash repository
+      yum_repository:
+        name: logstash-7.x
+        description: Elastic repository for 7.x packages
+        baseurl: https://artifacts.elastic.co/packages/7.x/yum
+        gpgcheck: true
+        gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+        enabled: true
+        autorefresh: true
+        type: rpm-md
+
+    - name: Update repository cache and install logstash
+      yum: 
+        name: logstash-7.17.29
+        state: present
+        update_cache: true
+
+# Add below when adding conf file for logstash 
+#    - name: Configure Beats configuration file
+#      template:
+#        src: logstash.conf
+#        dest: /etc/logstash/conf.d/logstash.conf
+#        owner: root
+#        group: root
+#        mode: '0644'
+
+    - name: Running logstash
+      systemd:
+        name: logstash
+        daemon_reload: true
+        state: started
+        enabled: true
+
+
