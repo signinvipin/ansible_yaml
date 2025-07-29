@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  become: true
+  tasks: null
+  roles:    
+    - role: java
+    - role: elasticsearch
+    - role: kibana
+    - role: nginx
+    - role: logstash
