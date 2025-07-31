@@ -1,33 +1,29 @@
 ---
-- hosts: 
-    - 
-  become: true
-  tasks:
-    - name: Setup elasticsearch repo
-      yum_repository:
-        name: elasticsearch
-        description: Elasticsearch repository for 7.x packages
-        baseurl: https://artifacts.elastic.co/packages/7.x/yum
-        gpgcheck: true
-        gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-        enabled: false
-        autorefresh: true
-        type: rpm-md
-        state: present
+- name: Setup elasticsearch repo
+  yum_repository:
+    name: elasticsearch
+    description: Elasticsearch repository for 7.x packages
+    baseurl: https://artifacts.elastic.co/packages/7.x/yum
+    gpgcheck: true
+    gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    enabled: false
+    autorefresh: true
+    type: rpm-md
+    state: present
     
-    - name: Enable repository and install elasticsearch
-      command: yum install --enablerepo=elasticsearch -y elasticsearch
+- name: Enable repository and install elasticsearch
+  command: yum install --enablerepo=elasticsearch -y elasticsearch
     
-    - name: Reload systemd for elasticsearch.service
-      command: systemctl daemon-reload
+- name: Reload systemd for elasticsearch.service
+  command: systemctl daemon-reload
     
-    - name: Enable elasticsearch.service
-      systemd:
-        name: elasticsearch
-        enabled: true
+- name: Enable elasticsearch.service
+  systemd:
+    name: elasticsearch
+    enabled: true
     
-    - name: Start elasticsearch
-      systemd:
-        name: elasticsearch
-        state: started
+- name: Start elasticsearch
+  systemd:
+    name: elasticsearch
+    state: started
 ...

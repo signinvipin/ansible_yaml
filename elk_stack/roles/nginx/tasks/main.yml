@@ -1,22 +1,18 @@
 ---
-- hosts:
-    - 
-  become: true
-  tasks:
-    - name: Install prerequisites
-      yum: 
-        name: yum-utils
-        state: present
+- name: Install prerequisites
+  yum: 
+    name: yum-utils
+    state: present
 
-    - name: Setup stable repository for nginx
-      yum_repository:
-        name: nginx-stable
-        description: nginx stable repo
-        baseurl: http://nginx.org/packages/centos/$releasever/$basearch/
-        gpgcheck: true
-        enabled: true
-        gpgkey: https://nginx.org/keys/nginx_signing.key
-        module_hotfixes: true
+- name: Setup stable repository for nginx
+  yum_repository:
+    name: nginx-stable
+    description: nginx stable repo
+    baseurl: http://nginx.org/packages/centos/$releasever/$basearch/
+    gpgcheck: true
+    enabled: true
+    gpgkey: https://nginx.org/keys/nginx_signing.key
+    module_hotfixes: true
 
 # Most of the time stable repository will be used
 #    - name: Setup mainline repository for nginx
@@ -33,10 +29,10 @@
 #      shell: 
 #        sudo yum-config-manager --enable nginx-mainline
 
-    - name: Install nginx-stable
-      yum:
-        name: nginx
-        state: present
+- name: Install nginx-stable
+  yum:
+    name: nginx
+    state: present
 
 # why below using templates?
 # kibana.conf.j2

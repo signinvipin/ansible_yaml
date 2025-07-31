@@ -1,11 +1,7 @@
 ---
-- hosts:
-    - 
-  become: true
-  tasks:
-    - name: Install java-11-openjdk
-      yum:
-        name: java-11-openjdk
-        state: present
+- name: Install java-11-openjdk
+  yum:
+    name: java-11-openjdk
+    state: present
 ...    
     
