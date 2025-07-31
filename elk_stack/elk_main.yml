@@ -7,5 +7,5 @@
     - role: elasticsearch
     - role: kibana
     - role: nginx
-    - role: logstash
+#    - role: logstash
 ...

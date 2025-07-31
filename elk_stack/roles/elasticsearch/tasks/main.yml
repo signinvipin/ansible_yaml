@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- hosts: 
+    - 
   become: true
   tasks:
     - name: Setup elasticsearch repo

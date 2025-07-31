@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- hosts:
+    - 
   become: true
   tasks:
     - name: Import Key 
@@ -40,5 +41,5 @@
         daemon_reload: true
         state: started
         enabled: true
-
+...
 
