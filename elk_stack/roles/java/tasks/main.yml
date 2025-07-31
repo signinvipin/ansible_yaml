@@ -7,9 +7,9 @@
 
 - name: Setup epel-release repository
   yum:
-    - name: epel-release
-      state: present
-      update_cache: true
+    name: epel-release
+    state: present
+    update_cache: true
 
 - name: Install java-11-openjdk
   yum:

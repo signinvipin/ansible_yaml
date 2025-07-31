@@ -7,8 +7,9 @@
     gpgcheck: true
     gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
     enabled: false
-    autorefresh: true
-    type: rpm-md
+#    autofresh and type are not supported by yum_repository
+#    autorefresh: true
+#    type: rpm-md
     state: present
     
 - name: Enable repository and install elasticsearch

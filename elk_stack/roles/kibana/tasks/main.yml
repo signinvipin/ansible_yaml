@@ -7,12 +7,13 @@
     gpgcheck: true
     gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
     enabled: true
-    autorefresh: true
-    type: rpm-md
+# not for yum_repository
+#    autorefresh: true
+#    type: rpm-md
 
 - name: Install kibana
   yum:
-    name: kibana-7.x
+    name: kibana-7.17.29
     state: present
 
 - name: Edit the configuration to access from anywhere
@@ -34,5 +35,5 @@
   systemd:
     name: kibana
     state: started
-        
+      
 ...    
