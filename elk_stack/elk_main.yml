@@ -8,3 +8,4 @@
     - role: kibana
     - role: nginx
     - role: logstash
+...
