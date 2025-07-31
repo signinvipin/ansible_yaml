@@ -6,5 +6,5 @@
       yum:
         name: java-11-openjdk
         state: present
-    
+...    
     
